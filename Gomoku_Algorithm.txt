@@ -1,0 +1,49 @@
+Author: Harry Cha
+Date created: 3/23/16 - 3/26/16
+
+The Gomoku Program Algorithm Explanation
+
+Gomoku is a 2-player strategy board game with 15 by 15 table.
+In order to win, a player must mark exactly 5 consecutive spaces horizontally, vertically, or diagonally.
+A player may not win if 6 or more consecutive spaces are marked.
+
+Program's Algorithm:
+program's mark : X, player's mark: O, empty: +
+! : O or +, @ : X or +
+"my" is "program's", "his" is "player's"
+
+Steps to check in order:
+
+1.) Check for my bingo in a turn. XXXX+ or XXX+X or XX+XX or !X+X+X+X!
+2.) Check for his bingo in a turn. OOOO+ or OOO+O or OO+OO or @O+O+O+O@
+3.) Check for my checkBingoIn2Turns moves if possible (only do 2nd one for first few turns):
+    XX+X or         X       or        +      or +XXX+
+                  X + X               X
+                    +             + X + X +
+                                      X
+                                      +
+
+    Except for +XXX+ and 2nd one, place mark on the center.
+    Note: Although 2nd one is not really bingo in 2 turns,
+    if not blocked, I'll lose by diagnal attacks with 3 by 3 attacks at the beginning.
+4.) Check for his checkBingoIn2Turns moves.
+    They are same as listed above (but reverse O and X).
+    Except for +XXX+, block the center.
+    They must be stopped right away unless conditions above can be made.
+5.) Check for my checkBingoIn3Turns moves if possible:
+    OXXX+ or OXX+XX+ or OXX+X+ or OX+XX+ (reverse of prev.) or      O
+                                                                    X
+                                                                + X + X +
+                                                                    X
+                                                                    +
+
+    Except for the last one, do not place mark on center to not make it look too obvious.
+    Although vulnerable to be blocked, it is better to have more marks this way.
+6.) Check for his checkBingoIn3Turns.
+    They are same as listed above (but reverse O and X).
+    Except for OXXX+, block the center.
+    They must be stopped unless conditions above can be made.
+7.) Add a mark on the longest line. (1 or 2 in length + 1)
+8.) First time? Mark on player's first mark's 1:30 o'clock direction right next to it.
+
+No move can be made outside of the bounds of the 15 by 15 game board.
